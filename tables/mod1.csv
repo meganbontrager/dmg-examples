@@ -1,0 +1,4 @@
+Term,estimate,SE,t,P
+Intercept,-0.492,0.203,-2.42,0.016
+Longest leaf (mm),0.217,0.0145,15,<0.0001
+Stem diameter (mm),0.147,0.224,0.656,0.512
