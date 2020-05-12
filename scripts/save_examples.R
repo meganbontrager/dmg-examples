@@ -81,7 +81,7 @@ pops = d %>%
   arrange(elev_m) %>% 
   rename(Population = site, Latitude = lat, Longitude = long, "Elevation (m)" = elev_m) %>% 
   ungroup() %>% 
-  mutate_at(c("Lat", "Long"), round, 3)
+  mutate_at(c("Latitude", "Longitude"), round, 3)
 pops
 write_csv(pops, "tables/pops.csv")
 
