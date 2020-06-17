@@ -51,7 +51,7 @@ p1 = ggplot(d, aes(x = longest_leaf_mm, y = number_true_leaves, color = site, fi
   # jitter a bit to show more points
   geom_jitter(alpha = 0.7, width = 0.2, height = 0.3) +
   geom_smooth(method = "lm") +
-  labs(x = "Longest leaf (mm)", y = "Number of leaves", color = "Population", fill = "Population")
+  labs(x = "Longest leaf (mm)", y = "Number of leaves", color = "Population", fill = "Population"); p1
 # To see a plot that you've put into an object, need to run object name
 p1
 
@@ -59,20 +59,22 @@ p2 = ggplot(d, aes(x = site, y = height_cm, fill = site)) +
   # jitter a bit to show more points
   geom_boxplot() +
   guides(fill = FALSE) +
-  labs(x = "Population", y = "Plant height (cm)", color = "Site")
+  labs(x = "Population", y = "Plant height (cm)", color = "Site"); p2
 p2
 
 plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1))
-ggsave("plots/size_by_pop.pdf", height = 4, width = 9)
+ggsave("plots/size_by_pop_big.pdf", height = 8, width = 18)
 
 # Can also plot vertically
-plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1, align = "v", axis = "lr")
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1)
 ggsave("plots/size_by_pop_vert.pdf", height = 7, width = 5)
 
 # cowplot has tons of handy functionality I won't describe here, but I recommend checking it out
 
 
 # Saving tables ----
+
+
 
 # You can make and arrange non-statistical tables in R, i.e., if we wanted geographic information and sample sizes:
 pops = d %>% 
@@ -81,7 +83,7 @@ pops = d %>%
   arrange(elev_m) %>% 
   rename(Population = site, Latitude = lat, Longitude = long, "Elevation (m)" = elev_m) %>% 
   ungroup() %>% 
-  mutate_at(c("Lat", "Long"), round, 3)
+  mutate_at(c("Latitude", "Longitude"), round, 3)
 pops
 write_csv(pops, "tables/pops.csv")
 
@@ -125,4 +127,4 @@ c
 write_csv(c, "tables/mod1.csv")
 print(myxtable(c, type = "latex", auto = FALSE), include.rownames = FALSE)
 
-
+?tidy

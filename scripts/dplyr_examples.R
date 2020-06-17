@@ -153,10 +153,10 @@ lat = data_reordered %>% pull(lat)
 
 wide_data = read_csv("data/climatena_input_1901-2013AMT.csv") %>% 
   pivot_longer(
-    cols = matches("Tmax|Tmin|Tave|PPT"), 
+    cols = matches("Tmax|Tmin|Tave|PPT"),
     names_to = "variable",
     values_to = "value"
-  ) %>% 
+  ) %>%
   separate(variable, -2, into = c("variable", "month"), convert = TRUE) %>% 
   pivot_wider(
     id_cols = c(Year, ID1, Latitude, Longitude, Elevation, month), 
@@ -193,7 +193,7 @@ recent_clim = data_reordered %>%
 dim(data_reordered)
 dim(recent_clim)
 summary(data_reordered$year)
-summary(data_reordered$year)
+summary(recent_clim$year)
 
 # You can also include multiple conditions separated by & or |
 clim_8010 = data_reordered %>% 
@@ -213,8 +213,17 @@ example
 # Can filter to only rows with ids in a vector of possible values 
 example = data_reordered %>% 
   filter(id %in% c("SD241782", "UC1529013"))
-example
 # Can use any vector in the above, eg., a column from another dataframe
+# This also works with a named vector in your environment, e.g., a list of sites from another dataframe or something.
+# The above is equivalent to:
+example = data_reordered %>% 
+  filter(id == "SD241782"|id == "UC1529013")
+
+# You can also pair with str functions to keep only rows where id contains a certain string, etc.
+example = data_reordered %>% 
+  filter(str_detect(id, "B") == TRUE)
+table(example$id)
+table(data_reordered$id)
 
 # Can omit rows with ids in a vector of possible values 
 example = data_reordered %>% 
