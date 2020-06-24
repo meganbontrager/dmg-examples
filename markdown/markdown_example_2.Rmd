@@ -8,7 +8,7 @@ output:
     toc: yes    
     toc_depth: 3
     toc_float: true
-runtime: shiny
+# runtime: shiny
 ---
 
 ## This is a markdown document
@@ -73,16 +73,13 @@ $\pi r^2$
 ### Interactive graphs?
 
 ```{r, echo=FALSE, message=FALSE}
+# selectInput("measurement", "measurement", c("height_cm", "stem_diam_mm", "longest_leaf_mm", "number_true_leaves"))
 
-selectInput("measurement", "measurement", c("height_cm", "stem_diam_mm", "longest_leaf_mm", "number_true_leaves"))
-```
-
-```{r, echo=FALSE, message=FALSE}
-renderPlot({
-  ggplot(dat) +
-  geom_boxplot(aes_string(x = "site", y = input$measurement, fill = "site")) +
-  guides(fill = FALSE) +
-  labs(x = "Population")
-})
+# renderPlot({
+#   ggplot(dat) +
+#   geom_boxplot(aes_string(x = "site", y = input$measurement, fill = "site")) +
+#   guides(fill = FALSE) +
+#   labs(x = "Population")
+# })
 ```
 
