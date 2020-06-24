@@ -33,6 +33,7 @@ ggplot(d) +
 # I use the ggsave command, you can change the file output type, dimensions etc.
 # It will either save the last plot made, or a plot object if you specify one (I'll show that below)
 ggsave("plots/height_pop.pdf", height = 4, width = 4, dpi = 72)
+ggsave("plots/height_pop.png", height = 4, width = 4, dpi = 72)
 # To get the dimensions right, I just try different values and look at the result (the saved file) until I like the ratio of the axes and the text is an appropriate size. 
 # This usually results in a size that journals can work with, but if they're really picky, you can specify the size they want and adjust the text, point size, etc in the plot code.
 

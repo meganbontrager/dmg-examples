@@ -1,0 +1,88 @@
+---
+title: "Markdown Example 2"
+author: "Megan Bontrager"
+date: "6/23/2020"
+output: 
+  html_document: 
+    keep_md: yes
+    toc: yes    
+    # toc_depth: 3
+    # toc_float: true
+runtime: shiny
+---
+
+## This is a markdown document
+
+If you want this to render on github, you need to add the keep_md option as I have above.
+
+You can have a nice, linked table of contents with the toc options.
+
+### You can run code right in here
+
+If echo = TRUE, the code is displayed. For a more polished doc, set echo to FALSE.
+
+```{r, echo=TRUE, message=FALSE}
+library(tidyverse)
+library(knitr)
+dat = read_csv("../data/clean_vern.csv")
+```
+
+### You can build plots too
+
+With code:
+
+```{r, echo=TRUE, message=FALSE, fig.height=4, fig.width=4}
+ggplot(dat) +
+  geom_boxplot(aes(x = site, y = height_cm, fill = site)) +
+  guides(fill = FALSE) +
+  labs(x = "Population", y = "Height (cm)")
+```
+
+Or with a relative path (might not work with pdfs?):
+
+![](../plots/height_pop.png)
+
+### You can also make simple tables
+
+##### Either with code:
+
+```{r, echo =  TRUE}
+kable(dat %>% group_by(site, block) %>% summarize(n = n()))
+```
+
+##### Or by typing them in:
+
+Variable | Definition
+---------|----------------------
+stem_diam_mm | Stem diameter in millimeters
+longest_leaf_mm | Length of the longest leaf, not including petiole, in millimeters
+height_cm | Height to tallest part of plant, in centimeters
+number_true_leaves | The number of true leaves on a plant
+
+
+### You can also call to R in line
+
+For example, the populations in this dataset are `r unique(dat$site)`.
+
+
+### Math is not too bad
+
+$\pi r^2$
+
+
+### Interactive graphs?
+
+```{r, echo=FALSE, message=FALSE}
+
+selectInput("measurement", "measurement", c("height_cm", "stem_diam_mm", "longest_leaf_mm", "number_true_leaves"))
+```
+
+```{r, echo=FALSE, message=FALSE}
+renderPlot({
+  ggplot(dat) +
+  geom_boxplot(aes_string(x = "site", y = input$measurement, fill = "site")) +
+  guides(fill = FALSE) +
+  labs(x = "Population")
+})
+```
+
