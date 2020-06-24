@@ -6,14 +6,14 @@ output:
   html_document: 
     keep_md: yes
     toc: yes    
-    # toc_depth: 3
-    # toc_float: true
+    toc_depth: 3
+    toc_float: true
 runtime: shiny
 ---
 
 ## This is a markdown document
 
-If you want this to render on github, you need to add the keep_md option as I have above.
+If you want this to render on github, you need to add the keep_md option as I have above. Some things still won't look as nice on the github site as they do in the html you create locally.
 
 You can have a nice, linked table of contents with the toc options.
 
