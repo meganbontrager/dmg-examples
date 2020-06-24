@@ -85,7 +85,7 @@ split_month = tall_data %>%
   # Separate splits a single column into 2+ columns
   # Can specify separating character (i.e., -, _) or the position to separate at, which is what I've done here
   # Convert means it will try to convert to the most logical column type
-  separate(variable, -2, into = c("variable", "month"), convert = TRUE)
+  separate(variable, -2, into = c("variable", "month"), convert = TRUE) # convert changes the number to an int, default is to a character
 split_month
 # Now variable and month are in separate columns
 
@@ -177,7 +177,7 @@ site_table = data_reordered %>%
   # Select columns of interest
   select(id, lat, long, elev) %>% 
   # Keep only distinct combinations of these columns
-  distinct()
+  distinct() #  can use to check for duplicates (I.E. upgraded Unique)
 site_table
 
 # Now, some examples of summarizing and subsetting this data. 
@@ -193,7 +193,7 @@ recent_clim = data_reordered %>%
 dim(data_reordered)
 dim(recent_clim)
 summary(data_reordered$year)
-summary(data_reordered$year)
+summary(recent_clim$year)
 
 # You can also include multiple conditions separated by & or |
 clim_8010 = data_reordered %>% 

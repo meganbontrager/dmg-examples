@@ -1,8 +1,8 @@
 # Saving your plots and tables
 library(tidyverse)
 library(cowplot)
-library(xtable)
-library(broom)
+library(xtable) #will format tables for latec
+library(broom) # for tidying
 
 theme_set(theme_cowplot())
 
@@ -62,11 +62,12 @@ p2 = ggplot(d, aes(x = site, y = height_cm, fill = site)) +
   labs(x = "Population", y = "Plant height (cm)", color = "Site")
 p2
 
-plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1))
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1)) #rel_widths are rel to each other 
 ggsave("plots/size_by_pop.pdf", height = 4, width = 9)
 
 # Can also plot vertically
-plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1, align = "v", axis = "lr")
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1, align = "v", axis = "lr") #align and axis make the plot y and x axes lign up in a multi plot graphic
+
 ggsave("plots/size_by_pop_vert.pdf", height = 7, width = 5)
 
 # cowplot has tons of handy functionality I won't describe here, but I recommend checking it out
