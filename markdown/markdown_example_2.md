@@ -2,17 +2,19 @@
 title: "Markdown Example 2"
 author: "Megan Bontrager"
 date: "6/23/2020"
-output: 
-  html_document: 
+# output: pdf_document
+output:
+  html_document:
     keep_md: yes
-    toc: yes    
-    # toc_depth: 3
-    # toc_float: true
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+# runtime: shiny
 ---
 
 ## This is a markdown document
 
-If you want this to render on github, you need to add the keep_md option as I have above.
+If you want this to render on github, you need to add the keep_md option as I have above. Some things still won't look as nice on the github site as they do in the html you create locally (e.g., math, kable tables).
 
 You can have a nice, linked table of contents with the toc options.
 
@@ -41,7 +43,7 @@ ggplot(dat) +
 
 ![](markdown_example_2_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-Or with a relative path (might not work with pdfs?):
+Or with a relative path (can't do this with pdfs):
 
 ![](../plots/height_pop.png)
 
@@ -69,7 +71,7 @@ SQ3    B3       40
 WL1    B1       35
 WL1    B2       34
 
-Or by typing them in:
+##### Or by typing them in:
 
 Variable | Definition
 ---------|----------------------
@@ -89,6 +91,7 @@ For example, the populations in this dataset are LV3, SQ3, DPR, WL1.
 $\pi r^2$
 
 
+### Interactive graphs?
 
 
 
