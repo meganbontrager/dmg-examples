@@ -7,9 +7,11 @@ output:
   html_document:
     keep_md: yes
     toc: yes
-    toc_depth: 3
+    toc_depth: 4
     toc_float: true
 # runtime: shiny
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ## This is a markdown document
@@ -18,40 +20,69 @@ If you want this to render on github, you need to add the keep_md option as I ha
 
 You can have a nice, linked table of contents with the toc options.
 
+There are some viewing options worth fiddling with via the little gear menu. You can have code output in line or in the console. You can have your knit document in a viewer pane or in a new window. 
+
 ### You can run code right in here
 
 If echo = TRUE, the code is displayed. For a more polished doc, set echo to FALSE.
 
+If your code is slow to run, set cache = TRUE so R doesn't have to re-run chunks unless you change them. 
+
 ```{r, echo=TRUE, message=FALSE}
+
 library(tidyverse)
 library(knitr)
-dat = read_csv("../data/clean_vern.csv")
+
+# Setting my root directory so that I can call to other scripts (setwd() doesn't work here and isn't advisable anyways)
+knitr::opts_knit$set(root.dir = normalizePath('../'))
+
 ```
 
-### You can build plots too
+### You can add plots too
 
-With code:
+#### That you create here...
 
 ```{r, echo=TRUE, message=FALSE, fig.height=4, fig.width=4}
+
+dat = read_csv("data/clean_vern.csv")
+
 ggplot(dat) +
-  geom_boxplot(aes(x = site, y = height_cm, fill = site)) +
+  geom_boxplot(aes(x = site, y = height_cm, fill = block)) +
   guides(fill = FALSE) +
   labs(x = "Population", y = "Height (cm)")
 ```
 
-Or with a relative path (can't do this with pdfs):
+#### Or with a relative path...
+
+If you've already got a plot somewhere (or a photo, etc.), you can pull it in (can't do this with pdfs).
 
 ![](../plots/height_pop.png)
 
-### You can also make simple tables
+Note that I have set the R code chunks to reference the main project directory, but when calling to an image file outside the R code chunks the path is relative to the folder that this .Rmd file resides in.
 
-##### Either with code:
+
+### You can also make tables
+
+Keep it simple though.
+
+#### Either with code...
+
+You can wrap a line of table-making code in kable().
 
 ```{r, echo =  TRUE}
 kable(dat %>% group_by(site, block) %>% summarize(n = n()))
 ```
 
-##### Or by typing them in:
+Or put it in an object and wrap that in kable(). 
+
+```{r, echo = TRUE}
+tab1 = dat %>% group_by(site, block) %>% summarize(n = n())
+
+kable(tab1)
+```
+
+
+#### Or by typing them in...
 
 Variable | Definition
 ---------|----------------------
@@ -59,6 +90,23 @@ stem_diam_mm | Stem diameter in millimeters
 longest_leaf_mm | Length of the longest leaf, not including petiole, in millimeters
 height_cm | Height to tallest part of plant, in centimeters
 number_true_leaves | The number of true leaves on a plant
+
+
+### You can source other scripts
+
+You can also source things from another script, then call to them. It takes a bit of fussing to get working directories correct (see first code chunk). Here I source a script that generates a little table and a plot, then call in these objects.
+
+```{r, echo = TRUE, message=FALSE, include=FALSE}
+  source("scripts/markdown_source_example.R")
+```
+
+
+```{r, echo = TRUE, message=FALSE}
+kable(pops)
+
+height_hist
+
+```
 
 
 ### You can also call to R in line
@@ -73,9 +121,10 @@ $\pi r^2$
 
 ### Interactive graphs?
 
+To try this out, uncomment the lines below and the runtime: shiny line in the header.
+
 ```{r, echo=FALSE, message=FALSE}
 # selectInput("measurement", "measurement", c("height_cm", "stem_diam_mm", "longest_leaf_mm", "number_true_leaves"))
-
 # renderPlot({
 #   ggplot(dat) +
 #   geom_boxplot(aes_string(x = "site", y = input$measurement, fill = "site")) +
