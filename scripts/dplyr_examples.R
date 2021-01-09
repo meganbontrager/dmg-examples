@@ -223,8 +223,7 @@ example = data_reordered %>%
 example = data_reordered %>% 
   filter(str_detect(id, "B") == TRUE)
 table(example$id)
-table(data_reordered$id)
-
+table(data_reordered$id)==
 # Can omit rows with ids in a vector of possible values 
 example = data_reordered %>% 
   filter(!(id %in% c("SD241782", "UC1529013")))
