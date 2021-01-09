@@ -1,0 +1,26 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Turesson(1922)]{turesson1922species}
+G{\"o}te Turesson.
+\newblock The species and the variety as ecological units.
+\newblock \emph{Hereditas}, 3\penalty0 (1):\penalty0 100--113, 1922.
+
+\bibitem[Clausen et~al.(1948)Clausen, Keck, and
+  Heisey]{clausen1948experimental}
+Jens Clausen, David~D Keck, and William~M Heisey.
+\newblock Experimental studies on the nature of species {III}: {E}nvironmental
+  responses of climatic races of \textit{{A}chillea}, 1948.
+
+\bibitem[Savolainen et~al.(2007)Savolainen, Pyh{\"a}j{\"a}rvi, and
+  Kn{\"u}rr]{savolainen2007gene}
+Outi Savolainen, Tanja Pyh{\"a}j{\"a}rvi, and Timo Kn{\"u}rr.
+\newblock Gene flow and local adaptation in trees.
+\newblock \emph{Annual Review of Ecology, Evolution, and Systematics},
+  38:\penalty0 595--619, 2007.
+
+\end{thebibliography}

@@ -218,6 +218,15 @@ example = data_reordered %>%
 # The above is equivalent to:
 example = data_reordered %>% 
   filter(id == "SD241782"|id == "UC1529013")
+<<<<<<< HEAD
+=======
+
+# You can also pair with str functions to keep only rows where id contains a certain string, etc.
+example = data_reordered %>% 
+  filter(str_detect(id, "B") == TRUE)
+table(example$id)
+table(data_reordered$id)
+>>>>>>> 11fd9eeed3743855c9c78e3918a6687dbb482175
 
 # You can also pair with str functions to keep only rows where id contains a certain string, etc.
 example = data_reordered %>% 

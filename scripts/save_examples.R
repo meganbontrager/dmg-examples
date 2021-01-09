@@ -64,6 +64,7 @@ p2 = ggplot(d, aes(x = site, y = height_cm, fill = site)) +
 p2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1)) #rel_widths are rel to each other 
 ggsave("plots/size_by_pop.pdf", height = 4, width = 9)
 
@@ -77,6 +78,13 @@ ggsave("plots/size_by_pop_big.pdf", height = 8, width = 18)
 # Can also plot vertically
 plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1)
 >>>>>>> fb4dfd2095b763c3c2828a8c467caf6f3ebe8c82
+=======
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1))
+ggsave("plots/size_by_pop_big.pdf", height = 8, width = 18)
+
+# Can also plot vertically
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1)
+>>>>>>> 11fd9eeed3743855c9c78e3918a6687dbb482175
 ggsave("plots/size_by_pop_vert.pdf", height = 7, width = 5)
 
 # cowplot has tons of handy functionality I won't describe here, but I recommend checking it out
