@@ -33,6 +33,7 @@ ggplot(d) +
 # I use the ggsave command, you can change the file output type, dimensions etc.
 # It will either save the last plot made, or a plot object if you specify one (I'll show that below)
 ggsave("plots/height_pop.pdf", height = 4, width = 4, dpi = 72)
+ggsave("plots/height_pop.png", height = 4, width = 4, dpi = 72)
 # To get the dimensions right, I just try different values and look at the result (the saved file) until I like the ratio of the axes and the text is an appropriate size. 
 # This usually results in a size that journals can work with, but if they're really picky, you can specify the size they want and adjust the text, point size, etc in the plot code.
 
@@ -51,7 +52,7 @@ p1 = ggplot(d, aes(x = longest_leaf_mm, y = number_true_leaves, color = site, fi
   # jitter a bit to show more points
   geom_jitter(alpha = 0.7, width = 0.2, height = 0.3) +
   geom_smooth(method = "lm") +
-  labs(x = "Longest leaf (mm)", y = "Number of leaves", color = "Population", fill = "Population")
+  labs(x = "Longest leaf (mm)", y = "Number of leaves", color = "Population", fill = "Population"); p1
 # To see a plot that you've put into an object, need to run object name
 p1
 
@@ -59,21 +60,31 @@ p2 = ggplot(d, aes(x = site, y = height_cm, fill = site)) +
   # jitter a bit to show more points
   geom_boxplot() +
   guides(fill = FALSE) +
-  labs(x = "Population", y = "Plant height (cm)", color = "Site")
+  labs(x = "Population", y = "Plant height (cm)", color = "Site"); p2
 p2
 
+<<<<<<< HEAD
 plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1)) #rel_widths are rel to each other 
 ggsave("plots/size_by_pop.pdf", height = 4, width = 9)
 
 # Can also plot vertically
 plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1, align = "v", axis = "lr") #align and axis make the plot y and x axes lign up in a multi plot graphic
 
+=======
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1))
+ggsave("plots/size_by_pop_big.pdf", height = 8, width = 18)
+
+# Can also plot vertically
+plot_grid(p2, p1, labels = c("A.", "B."), rel_widths = c(0.75, 1), ncol = 1)
+>>>>>>> fb4dfd2095b763c3c2828a8c467caf6f3ebe8c82
 ggsave("plots/size_by_pop_vert.pdf", height = 7, width = 5)
 
 # cowplot has tons of handy functionality I won't describe here, but I recommend checking it out
 
 
 # Saving tables ----
+
+
 
 # You can make and arrange non-statistical tables in R, i.e., if we wanted geographic information and sample sizes:
 pops = d %>% 
@@ -126,4 +137,4 @@ c
 write_csv(c, "tables/mod1.csv")
 print(myxtable(c, type = "latex", auto = FALSE), include.rownames = FALSE)
 
-
+?tidy
